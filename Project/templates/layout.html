@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>
+        {% block title %}
+            Priyansh-Django
+        {% endblock %}
+    </title>
+    <style>
+        .navbar{
+            border-bottom: 2px solid #C7D0E0;
+        }
+    </style>
+</head>
+<body style="background: linear-gradient(135deg, #0F2027, #2C5364);
+">
+    <nav style="background: linear-gradient(135deg, #0F2027,#243B55);" class="navbar navbar-expand-lg navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand" style="color: #4CA1AF;">Priyansh-Django</span>
+            <span style="color : #4CA1AF">|</span>
+            <a href="{% url 'create_tweet' %}" class="navbar-brand" style="color: #4CA1AF; margin: 0px 0px 0px 20px;">
+            Post-Tweet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
+            style="border-color: #64FFDA;">
+            <span class="navbar-toggler-icon" style="color: #64FFDA;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                <span class="nav-link" style="color: #FFFFFF;">Home</span>
+                </li>
+                <li class="nav-item">
+                <span class="nav-link" style="color: #FFFFFF;">About</span>
+                </li>
+                <li class="nav-item">
+                <span class="nav-link" style="color: #FFFFFF;">Contact</span>
+                </li>
+                <li class="nav-item">
+                <span class="nav-link" style="color: #4CA1AF;">Login</span>
+                </li>
+                <li class="nav-item">
+                <span class="nav-link" style="color: #4CA1AF;">Sign Up</span>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
