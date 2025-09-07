@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('', views.dispay_tweet , name="dialay_tweet"),
+    path('', views.dispay_tweet , name="display_tweet"),
     path('create/',views.create_tweet,name ="create_tweet"),
     path('<int:tweet_id>/edit/', views.edit_tweet, name='edit_tweet'),
     path('<int:tweet_id>/delete/',views.delete_tweet,name="delete_tweet"),
