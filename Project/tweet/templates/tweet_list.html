@@ -5,68 +5,261 @@
 {% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
 <style>
-  .edit-btn {
-    color: #b8d0faff;
-    background-color: #35577D;
-    border-radius: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 5px 0 rgba(66, 169, 198, 0.25);
-    font-weight: bold;
+  .hero-section-min {
+      width: 100%;
+      padding: 5.5rem 1.25rem 5.5rem; /* extra bottom space for waves */
+      text-align: center;
+      position: relative;
+      margin: 0 auto 1rem;
+      max-width: 1200px;
+      overflow: hidden; /* hide wave overflow */
   }
+  .hero-section-min::before {
+      content: ""; position: absolute; inset: 0; margin: auto; width: 900px; height: 900px; z-index: 0; pointer-events: none;
+      background: radial-gradient(circle at center, rgba(99,102,241,0.18), rgba(15,32,39,0) 70%);
+      filter: blur(6px);
+  }
+  .hero-heading-min {
+      font-size: clamp(2.2rem, 5.2vw, 3.4rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.5px; margin: 0 0 1rem; position: relative; z-index: 2;
+      background: linear-gradient(90deg,#4CA1AF,#3FAFBA 40%, #64FFDA 85%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-subtext-min {
+      max-width: 720px; margin: 0 auto 2.1rem; font-size: clamp(0.95rem,1.35vw,1.15rem); line-height: 1.55; color: #d3dce8; position: relative; z-index: 2;
+  }
+  .hero-cta-min {
+      display: inline-block; background: linear-gradient(135deg,#4CA1AF,#1E5F69); color: #fff; font-weight: 600; padding: 0.85rem 2.2rem; border-radius: 999px; font-size: 1rem; letter-spacing: 0.4px; text-decoration: none; position: relative; z-index: 2; transition: all .35s cubic-bezier(.4,0,.2,1); box-shadow: 0 8px 26px -6px rgba(76,161,175,0.45),0 2px 8px rgba(0,0,0,0.35);
+  }
+  .hero-cta-min:hover { transform: translateY(-4px); box-shadow: 0 12px 36px -6px rgba(100,255,218,0.55),0 4px 14px rgba(0,0,0,0.45); text-decoration: none; }
+  .hero-cta-min:active { transform: translateY(-1px); box-shadow: 0 6px 20px -4px rgba(76,161,175,0.55); }
+  /* Wavy animation */
+  .hero-waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 160px; z-index: 1; pointer-events: none; }
+  .hero-waves svg { position: absolute; bottom: 0; left: 0; width: 200%; height: 100%; }
+  .hero-waves .wave { animation: waveSlide 18s linear infinite; transform: translateZ(0); }
+  .hero-waves .wave.wave2 { animation-duration: 26s; animation-direction: reverse; opacity: 0.45; filter: blur(1px); }
+  .hero-waves .wave.wave3 { animation-duration: 34s; opacity: 0.25; }
+  /* Override wave fill colors to teal palette */
+  .hero-waves .wave.wave1 path { fill: rgba(76,161,175,0.38); }
+  .hero-waves .wave.wave2 path { fill: rgba(100,255,218,0.38); }
+  .hero-waves .wave.wave3 path { fill: rgba(44,83,100,0.35); }
+  /* Center word inside waves */
+  .hero-waves .wave-label {
+      position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:clamp(1.6rem,3.2vw,2.6rem); font-weight:800; letter-spacing:4px;
+      background:linear-gradient(90deg,#64FFDA,#4CA1AF,#3FAFBA,#64FFDA);
+      -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 22px rgba(76,161,175,0.55);
+      animation: floatLabel 6s ease-in-out infinite; z-index:3; pointer-events:none;
+  }
+  @keyframes floatLabel { 0%,100% { transform:translate(-50%, -50%) translateY(-6px); } 50% { transform:translate(-50%, -50%) translateY(6px); } }
+  @keyframes waveSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .hero-cta-min { transition: none; } .hero-waves .wave { animation: none; } .hero-waves .wave-label { animation:none; } }
+</style>
+<section class="hero-section-min">
+  <h1 class="hero-heading-min">Share Your Thoughts, Instantly.</h1>
+  <p class="hero-subtext-min">Post your ideas, stories, and moments in seconds. Fast, distraction-free, and built to let your voice stand out—start creating now.</p>
+  <a href="{% url 'create_tweet' %}" class="hero-cta-min">Get Started</a>
+  <div class="hero-waves">
+    <span class="wave-label">IDEAS</span>
+    <svg class="wave wave1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0,100 C150,140 330,60 600,110 C870,160 1050,80 1200,120 L1200,160 L0,160 Z" /></svg>
+    <svg class="wave wave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0,110 C200,150 380,90 600,130 C820,170 1000,100 1200,140 L1200,160 L0,160 Z" /></svg>
+    <svg class="wave wave3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0,120 C180,150 360,110 600,140 C840,170 1020,120 1200,150 L1200,160 L0,160 Z" /></svg>
+  </div>
+</section>
 
-  .edit-btn:hover {
-    background-color: #2C4364;   /* darker shade */
-    color: #ffffff;              /* white text */
-    box-shadow: 0 4px 10px rgba(66, 169, 198, 0.35);
-    transform: translateY(-2px); /* slight lift */
+<style>
+  /* Enhanced Edit & Delete buttons (size, spacing, rounded, subtle interactive hover) */
+  .edit-btn, .delete-btn {
+    color: #b8d0fa;
+    background-color: #35577D; /* unchanged color */
+    border-radius: 0.75rem; /* smoother rounding */
+    padding: 0.55rem 1.05rem; /* larger padding */
+    font-size: 0.87rem; /* slightly larger text */
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    text-decoration: none;
+    position: relative;
+    transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s cubic-bezier(.4,0,.2,1), background .35s ease, color .35s ease;
+    box-shadow: 0 3px 10px -3px rgba(0,0,0,0.45), 0 2px 4px -1px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(2px);
   }
-  .delete-btn {
-    color: #b8d0faff;
-    background-color: #35577D;
-    border-radius: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 5px 0 rgba(66, 169, 198, 0.25);
-    font-weight: bold;
+  .edit-btn:hover, .delete-btn:hover {
+    background-color: #2C4364; /* keep hover color */
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.65), 0 6px 14px -4px rgba(0,0,0,0.5);
+    text-decoration: none;
   }
+  .edit-btn:active, .delete-btn:active { transform: translateY(-1px) scale(1.02); box-shadow: 0 6px 16px -6px rgba(0,0,0,0.55); }
+  .edit-btn:focus-visible, .delete-btn:focus-visible { outline: 2px solid #64FFDA; outline-offset: 3px; }
 
-  .delete-btn:hover {
-    background-color: #2C4364;   /* darker shade */
-    color: #ffffff;              /* white text */
-    box-shadow: 0 4px 10px rgba(66, 169, 198, 0.35);
-    transform: translateY(-2px); /* slight lift */
+  .tweet-card {
+    height: 320px;
+    width: 100%;
+    max-width: 16rem;
+    background: linear-gradient(135deg, #2C5364, #141E30);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 25px 0 rgba(80, 227, 194, 0.25);
+    border: none;
+    margin: auto;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
+  .tweet-card:hover {
+    box-shadow: 0 6px 30px 0 rgba(80, 227, 194, 0.35);
+    transform: translateY(-4px) scale(1.02);
+  }
+  .tweet-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+  .tweet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-body-custom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem;
+  }
+  .tweet-text {
+    /* increased bottom margin for cleaner spacing before buttons */
+    margin-bottom: 1.1rem; /* was 0.8rem */
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 0.9rem;
+  }
+  .action-buttons {
+    margin-top: auto;
+    padding-top: 0.55rem; /* slightly increased vertical separation */
+    display: flex;
+    gap: 0.55rem; /* consistent gap scaling with new button size */
+  }
+  /* Unified Create New Post card styling to match standard tweet cards */
+  .tweet-card.create-post-card {
+      background: linear-gradient(135deg, #2C5364, #141E30);
+      border: none;
+      border-radius: 0.5rem;
+      height: 320px; /* match tweet-card */
+      max-width: 16rem;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      text-align: center;
+      box-shadow: 0 2px 25px 0 rgba(80, 227, 194, 0.25);
+      transition: box-shadow 0.25s ease, transform 0.25s ease, background 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+  }
+  .tweet-card.create-post-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 25%, rgba(80,227,194,0.25), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+  }
+  .tweet-card.create-post-card .plus-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(80,227,194,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1;
+      color: #64FFDA;
+      box-shadow: 0 0 0 4px rgba(80,227,194,0.12), 0 8px 22px -6px rgba(80,227,194,0.45);
+      transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .tweet-card.create-post-card span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #dffcf6;
+      text-shadow: 0 0 6px rgba(80,227,194,0.45);
+      transition: color 0.35s ease, letter-spacing 0.35s ease;
+  }
+  .tweet-card.create-post-card:hover {
+      box-shadow: 0 6px 30px 0 rgba(80,227,194,0.35);
+      transform: translateY(-4px) scale(1.02);
+  }
+  .tweet-card.create-post-card:hover::before { opacity: 1; }
+  .tweet-card.create-post-card:hover .plus-icon {
+      background: rgba(80,227,194,0.22);
+      transform: scale(1.08) rotate(8deg);
+      box-shadow: 0 0 0 6px rgba(80,227,194,0.16), 0 12px 30px -8px rgba(80,227,194,0.55);
+  }
+  .tweet-card.create-post-card:hover span { letter-spacing: 0.65px; }
+  .tweet-card.create-post-card:active {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 4px 22px 0 rgba(80,227,194,0.32);
+  }
+  .tweet-card.create-post-card:focus-visible { outline: 2px solid #64FFDA; outline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) { .tweet-card.create-post-card, .tweet-card.create-post-card .plus-icon { transition: none; } }
 </style>
 <div class="container py-4">
-    <div class="row g-4">
-      {% for tweet in tweet %}
-        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-space-between">
-          <div class="card" style="
-               min-height: 350px;
-               width: 18rem;
-               background: linear-gradient(135deg, #2C5364, #141E30);
-               border-radius: 0.5rem;
-               box-shadow: 0 2px 25px 0 rgba(80, 227, 194, 0.25);
-               border: none;">
-            {% if tweet.photo %}
-              <img src="{{ tweet.photo.url }}" style="width: 100%;
-                height: 200px;
-                object-fill: cover;"class="card-img-top rounded-top" alt="Tweet image">
-            {% endif %}
-            <div class="card-body text-light">
-              <h5 class="card-title fw-bold mb-2" style="color: #5495b0ff;">{{ tweet.user.username }}</h5>
-              <p class="card-text" style="color: #f5f5f5;">{{ tweet.text }}</p>
-              <div class="d-flex gap-2 mt-3">
-                <a href="{% url 'edit_tweet' tweet.id %}" class="btn edit-btn">Edit</a>
-                <a href="{% url 'delete_tweet' tweet.id %}" class="btn delete-btn">Delete</a>
+
+    <div class="mb-4">
+      <h2 class="text-light fw-bold mb-0">Tweets</h2>
+    </div>
+    <div class="row g-3">
+      <!-- Create New Post Card -->
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex">
+        <a href="{% url 'create_tweet' %}" class="tweet-card create-post-card" aria-label="Create new post">
+          <div class="plus-icon" aria-hidden="true">+</div>
+          <span>Create New Post</span>
+        </a>
+      </div>
+      {% if tweet %}
+        {% for tweet in tweet %}
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex">
+            <div class="tweet-card card flex-fill">
+              {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="tweet-img card-img-top" alt="Tweet image">
+              {% endif %}
+              <div class="card-body-custom text-light">
+                <div class="tweet-header mb-2">
+                  <h6 class="card-title fw-bold mb-0" style="color: #5495b0; font-size: 0.9rem;">{{ tweet.user.username }}</h6>
+                  <span class="badge bg-info text-dark" style="font-size: 0.7rem;">@{{ tweet.user.username }}</span>
+                </div>
+                <p class="tweet-text" style="color: #f5f5f5;">{{ tweet.text }}</p>
+                <div class="action-buttons">
+                  <a href="{% url 'edit_tweet' tweet.id %}" class="edit-btn" title="Edit this tweet">Edit</a>
+                  <a href="{% url 'delete_tweet' tweet.id %}" class="delete-btn" title="Delete this tweet">Delete</a>
+                </div>
               </div>
             </div>
           </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12">
+          <div class="alert alert-info text-center mt-4">No tweets found. Be the first to <a href="{% url 'create_tweet' %}" class="alert-link">post a tweet</a>!</div>
         </div>
-      {% endfor %}
-
+      {% endif %}
     </div>
 </div>
 {% endblock %}

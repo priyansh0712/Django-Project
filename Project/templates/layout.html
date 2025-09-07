@@ -11,8 +11,59 @@
         {% endblock %}
     </title>
     <style>
-        .navbar{
-            border-bottom: 2px solid #C7D0E0;
+        .navbar {
+            border-bottom: 2px solid rgba(199, 208, 224, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand:hover {
+            transform: translateY(-1px);
+            text-shadow: 0 2px 10px rgba(76, 161, 175, 0.5);
+        }
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.2rem;
+        }
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+        .nav-link.active {
+            background: rgba(76, 161, 175, 0.2);
+            color: #4CA1AF !important;
+        }
+        .navbar-toggler {
+            border: none;
+            padding: 0.25rem 0.5rem;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .navbar-divider {
+            color: #4CA1AF;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+        .post-tweet-btn {
+            background: linear-gradient(135deg, #4CA1AF, #2C5364);
+            color: #fff !important;
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem !important;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(76, 161, 175, 0.3);
+        }
+        .post-tweet-btn:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -25,7 +76,7 @@
             <a href="{% url 'create_tweet' %}" class="navbar-brand" style="color: #4CA1AF; margin: 0px 0px 0px 20px;">
             Post-Tweet</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
             style="border-color: #64FFDA;">
             <span class="navbar-toggler-icon" style="color: #64FFDA;"></span>
             </button>
