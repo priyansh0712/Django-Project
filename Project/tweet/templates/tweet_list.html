@@ -59,8 +59,8 @@
               <h5 class="card-title fw-bold mb-2" style="color: #5495b0ff;">{{ tweet.user.username }}</h5>
               <p class="card-text" style="color: #f5f5f5;">{{ tweet.text }}</p>
               <div class="d-flex gap-2 mt-3">
-                <button href="{% url 'edit_tweet' tweet.id %}" class="btn edit-btn">Edit</button>
-                <button href="{% url 'delete_tweet' tweet.id %}" class="btn delete-btn">Delete</button>
+                <a href="{% url 'edit_tweet' tweet.id %}" class="btn edit-btn">Edit</a>
+                <a href="{% url 'delete_tweet' tweet.id %}" class="btn delete-btn">Delete</a>
               </div>
             </div>
           </div>

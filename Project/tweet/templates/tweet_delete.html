@@ -1,9 +1,28 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Tweet with Me
+    Delete Tweet
 {% endblock %}
 
 {% block content %}
-    <h3 class="text-center text-white mt-4">Welcome to my project</h3>
+    <div class="container mt-4">
+        {% comment %} <h3 class="text-center text-white">Delete Tweet</h3> {% endcomment %}
+        <div class="card mx-auto" style="max-width: 400px; background: linear-gradient(135deg, #2C5364, #141E30); border: none;">
+            <div class="card-body text-light">
+                <h5 class="card-title text-warning">Are you sure you want to delete this tweet?</h5>
+                <img src="{{ tweet.photo.url }}" style="width: 90%;
+                height: 280px;
+                object-fit: cover;
+                display: block;
+                margin: 0 auto;" class="card-img-top rounded-top" alt="Tweet image">
+                <p class="card-text mt-4">"{{ tweet.text }}"</p>
+                <p class="text-info">By: {{ tweet.user.username }}</p>
+                <form method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    <a href="{% url 'display_tweet' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

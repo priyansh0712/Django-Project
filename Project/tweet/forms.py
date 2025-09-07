@@ -4,4 +4,5 @@ from .models import Tweet
 class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
-        fields = ['text','photo']  # Name should must be a Fields
+        fields = ['text','photo']  # Removed 'user' field as it should be set in the view
+        
