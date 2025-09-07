@@ -19,7 +19,7 @@
                 <p class="text-info">By: {{ tweet.user.username }}</p>
                 <form method="post" class="d-inline">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                     <a href="{% url 'display_tweet' %}" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
