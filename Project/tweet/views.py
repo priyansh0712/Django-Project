@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Tweet
 from .forms import TweetForm
 from django.shortcuts import get_object_or_404,redirect
+from django.contrib.auth.decorators import login_required
 
 # View for Display all Tweet 
 def dispay_tweet(request):
@@ -9,6 +10,7 @@ def dispay_tweet(request):
     return render(request,'tweet_list.html',{'tweet': tweets})
 
 # View for Create Tweet
+@login_required
 def create_tweet(request):
     form = None
     if request.method == 'POST':
@@ -25,6 +27,7 @@ def create_tweet(request):
     return render(request,'tweet_form.html',{'form':form})
 
 # View for Edit Tweet
+@login_required
 def edit_tweet(request , tweet_id):
     # Get the tweet object or return 404 if not found, ensuring user owns the tweet
     tweet = get_object_or_404(Tweet,pk = tweet_id , user = request.user)
@@ -42,6 +45,7 @@ def edit_tweet(request , tweet_id):
     return render(request,'tweet_form.html',{'form':form})
 
 # View for Delete Tweet
+@login_required
 def delete_tweet(request , tweet_id):
     tweet = get_object_or_404(Tweet , pk = tweet_id , user = request.user)
     if request.method == 'POST':

@@ -5,17 +5,130 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center text-white mt-4">Welcome to my project</h1>
-    <h3 style="color: #f5f5f5; padding-top: 50px">{% if form.instance.pk %}
-            Edit Tweet
-        {% else %}
-            Create Tweet
-        {% endif %}
-    </h3>
-    <form method="post" enctype="multipart/form-data" style="color: #f5f5f5">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <a href={% url "display_tweet" %}><button type="submit" class="btn btn-primary mt-3">Submit</button></a>
-    </form>
+
+<style>
+    .tweet-form-bg {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+    .tweet-form-card {
+        background: linear-gradient(135deg, #243B55, #1b2735 60%);
+        border-radius: 1.2rem;
+        box-shadow: 0 6px 32px 0 rgba(44,83,100,0.18), 0 1.5px 6px rgba(76,161,175,0.13);
+        padding: 2.5rem 2rem 2rem 2rem;
+        max-width: 420px;
+        width: 100%;
+        color: #eaf6fb;
+        border: 1.5px solid rgba(76,161,175,0.10);
+    }
+    .tweet-form-title {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        text-align: center;
+        margin-bottom: 1.2rem;
+        background: linear-gradient(90deg,#4CA1AF,#3FAFBA 60%, #64FFDA 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .tweet-form-card label {
+        color: #b8d0fa;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        display: block;
+        letter-spacing: 0.2px;
+    }
+    .tweet-form-card input, .tweet-form-card textarea, .tweet-form-card select {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        border-radius: 0.7rem;
+        border: 1.5px solid #35577D;
+        background: #16202a;
+        color: #eaf6fb;
+        font-size: 1rem;
+        margin-bottom: 1.1rem;
+        transition: border 0.2s, box-shadow 0.2s;
+        box-shadow: 0 1.5px 6px rgba(76,161,175,0.07);
+    }
+    .tweet-form-card input:focus, .tweet-form-card textarea:focus, .tweet-form-card select:focus {
+        border: 1.5px solid #4CA1AF;
+        outline: none;
+        box-shadow: 0 0 0 2px #4CA1AF33;
+    }
+    .tweet-form-actions {
+        display: flex;
+        gap: 0.7rem;
+        margin-top: 0.5rem;
+    }
+    .tweet-form-submit {
+        flex: 1;
+        background: linear-gradient(90deg,#4CA1AF,#3FAFBA 80%, #64FFDA 100%);
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        border-radius: 0.7rem;
+        padding: 0.7rem 0;
+        font-size: 1.08rem;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 10px rgba(76,161,175,0.13);
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+
+        cursor: pointer;
+    }
+    .tweet-form-submit:hover {
+        background: linear-gradient(90deg,#3FAFBA,#4CA1AF 80%, #64FFDA 100%);
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 6px 18px -4px #4CA1AF55;
+    }
+    .tweet-form-cancel {
+        flex: 1;
+        background: #16202a;
+        color: #b8d0fa;
+        font-weight: 600;
+        border: 1.5px solid #35577D;
+        border-radius: 0.7rem;
+        padding: 0.7rem 0;
+        font-size: 1.08rem;
+        letter-spacing: 0.5px;
+        text-align: center;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
+        box-shadow: 0 1.5px 6px rgba(76,161,175,0.07);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .tweet-form-cancel:hover {
+        background: #243B55;
+        color: #fff;
+        border: 1.5px solid #4CA1AF;
+        transform: translateY(-2px) scale(1.03);
+    }
+</style>
+
+<div class="tweet-form-bg">
+    <div class="tweet-form-card">
+        <div class="tweet-form-title">
+            {% if form.instance.pk %}
+                Edit Tweet
+            {% else %}
+                Create Tweet
+            {% endif %}
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="tweet-form-actions">
+                <button type="submit" class="tweet-form-submit">Submit</button>
+                <a href="{% url 'display_tweet' %}" class="tweet-form-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
