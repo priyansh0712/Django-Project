@@ -170,6 +170,6 @@ Project Link: [https://github.com/priyansh0712/Django-Project](https://github.co
 
 **⭐ Don't forget to star this repository if you found it helpful! ⭐**
 
-Made with 💻 and ☕ by [Priyansh Vekariya](https://github.com/priyansh0712)
+Made with 💻 and ☕ by [Priyansh Vekariya](https://github.com/priyansh0712/Priyansh-Vekariya)
 
 </div>
