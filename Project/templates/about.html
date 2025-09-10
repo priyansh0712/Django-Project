@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #1b2735 80%, #243B55 100%); color: #eaf6fb; border-radius: 1.2rem;">
+        <div class="card-body p-5">
+          <h1 class="mb-4" style="font-weight:800; background:linear-gradient(90deg,#4CA1AF,#3FAFBA 60%, #64FFDA 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">About This Project</h1>
+          <p style="font-size:1.15rem; color:#b8d0fa;">This Django project is a modern, minimal social platform for sharing thoughts and images. It features a clean UI, secure authentication, and a consistent color theme inspired by deep blues and teals. The project demonstrates best practices in Django, including custom forms, user authentication, and responsive design.</p>
+          <ul class="mt-4" style="color:#64FFDA;">
+            <li>Built with Django & Bootstrap</li>
+            <li>Modern, responsive UI</li>
+            <li>Secure user authentication</li>
+            <li>Photo uploads and tweet management</li>
+            <li>Consistent, beautiful color palette</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

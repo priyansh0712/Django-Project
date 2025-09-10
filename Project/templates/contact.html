@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<style>
+    .send-btn:hover {
+      background: linear-gradient(90deg,#3FAFBA,#4CA1AF 80%, #64FFDA 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.06);
+      box-shadow: 0 6px 18px -4px #4CA1AF55;
+      animation: pulse 0.5s;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 #4CA1AF55; }
+      70% { box-shadow: 0 0 0 12px rgba(76,161,175,0.13); }
+      100% { box-shadow: 0 6px 18px -4px #4CA1AF55; }
+    }
+  </style>
+<div class="container py-5">
+  {% if message_sent %}
+    <div class="alert alert-success text-center" style="border-radius:0.7rem; background:linear-gradient(90deg, #4CA1AF, #2ea5b0ff 90%); color:#fff; font-weight:600;">
+      Thank you for contacting us! Your message has been sent.
+    </div>
+  {% endif %}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #1b2735 80%, #243B55 100%); color: #eaf6fb; border-radius: 1.2rem;">
+        <div class="card-body p-5">
+          <h1 class="mb-4" style="font-weight:800; background:linear-gradient(90deg,#4CA1AF,#3FAFBA 60%, #64FFDA 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">Contact Us</h1>
+          <p style="font-size:1.15rem; color:#b8d0fa;">Have questions, feedback, or want to contribute? Reach out below!</p>
+          <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label" style="color:#4CA1AF;">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required style="background:#16202a; color:#eaf6fb; border:1.5px solid #35577D; border-radius:0.7rem;">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label" style="color:#4CA1AF;">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required style="background:#16202a; color:#eaf6fb; border:1.5px solid #35577D; border-radius:0.7rem;">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label" style="color:#4CA1AF;">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="4" required style="background:#16202a; color:#eaf6fb; border:1.5px solid #35577D; border-radius:0.7rem;"></textarea>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn send-btn" style="background:linear-gradient(90deg,#4CA1AF,#3FAFBA 80%, #64FFDA 100%); color:#fff; font-weight:700; border-radius:0.7rem; min-width:180px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;">Send Message</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

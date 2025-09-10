@@ -112,6 +112,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+APPEND_SLASH = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
@@ -128,3 +130,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'#Location of static files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
+LOGIN_URL = '/accounts/login'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Email backend settings (update with your real credentials)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pinshuvekariya@gmail.com'  # Replace with your email
+EMAIL_HOST_PASSWORD = 'oyoo ofcm flwf hlao'  # Replace with your app password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

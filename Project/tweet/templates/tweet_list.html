@@ -247,8 +247,10 @@
                 </div>
                 <p class="tweet-text" style="color: #f5f5f5;">{{ tweet.text }}</p>
                 <div class="action-buttons">
+                  {% if tweet.user == user %}
                   <a href="{% url 'edit_tweet' tweet.id %}" class="edit-btn" title="Edit this tweet">Edit</a>
                   <a href="{% url 'delete_tweet' tweet.id %}" class="delete-btn" title="Delete this tweet">Delete</a>
+                  {% endif %}
                 </div>
               </div>
             </div>
